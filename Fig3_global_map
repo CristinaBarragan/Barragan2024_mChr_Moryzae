@@ -1,0 +1,95 @@
+getwd()
+library(lubridate)
+library(tidyverse)
+library(dplyr)
+library(devtools)
+library(RColorBrewer)
+library(ggsn)
+library(ggmap)
+
+#Fig3
+world <- c(left = -110, bottom = -45, right = 170, top = 55)
+map <- get_stamenmap(world, zoom=4, maptype = "terrain")
+ggmap(map)
+getwd()
+setwd("Documents/BLAST/")
+ustest4 <- read.delim(file="62indv_coords_map.txt", sep= "\t", header=T)
+ustest4
+# No labels
+p <-ggmap(map)+ geom_point(data = ustest4, aes(x = ustest4$Lon, y = ustest4$Lat, color = ustest4$Lineage), size = 3, alpha = 0.8) +
+scale_color_manual(values = c("Oryza" = "darkgreen", "Lolium" = "darkmagenta", "Triticum" = "blue", "Brachiaria_1" = "grey90", "Eleusine" = "orange")) +
+theme_bw() 
+p
+
+#With labels
+p <-ggmap(map)+ geom_point(data = ustest4, aes(x = ustest4$Lon, y = ustest4$Lat, color = ustest4$Lineage), size = 3, alpha = 0.8) +
+  geom_text(data = ustest4, aes(x = ustest4$Lon, y = ustest4$Lat, label = ustest4$INDV), vjust = -0.5, size = 3) +
+  scale_color_manual(values = c("Oryza" = "darkgreen", "Lolium" = "darkmagenta", "Triticum" = "blue", "Brachiaria_1" = "grey90", "Eleusine" = "orange")) +
+  theme_bw() 
+p
+
+#### Input data
+
+INDV	Lat	Lon	Lineage
+364	-11.4099	-48.7191	Oryza
+658	-15.705	-49.3653	Oryza
+678	-15.705	-49.3653	Oryza
+12.0.073	-20.7722	-54.7852	Lolium
+12.0.321	-20.7722	-54.7852	Lolium
+12.0.326	-20.7722	-54.7852	Lolium
+12.0.345	-20.7722	-54.7852	Lolium
+12.0.347	-20.7722	-54.7852	Lolium
+12.0.368	-20.7722	-54.7852	Lolium
+12.0.534i	-23.3197	-51.1662	Triticum
+12.0.555i	-23.3197	-51.1662	Lolium
+12.1.014	-17.9302	-43.7908	Triticum
+12.1.078	-15.705	-49.3653	Triticum
+12.1.181	-29.3646	-51.6658	Triticum
+12.1.217	-29.3646	-51.6658	Triticum
+A-PHL-64	12.8797	121.774	Brachiaria_1
+AG0004	-31.4833298	-58.8333282	Oryza
+AG006	45.3155	8.8355	Oryza
+ARG-60	-38.4161	-63.6167	Brachiaria_1
+ARG-61	-38.4161	-63.6167	Brachiaria_1
+B51	-18.3409	-63.9527	Eleusine
+Br62	-14.235	-51.9253	Eleusine
+BTBa-B1	23.9999	90.4203	Triticum
+BTBa-B2	23.9999	90.4203	Triticum
+BTGP1_b	23.7721	88.6314	Triticum
+BTGS6e	23.7721	88.6314	Triticum
+BTGS6f	23.7721	88.6314	Triticum
+BTGS6g	23.7721	88.6314	Triticum
+BTGS6h	23.7721	88.6314	Triticum
+BTJP4_1	23.5528	89.1754	Triticum
+BTJP4_11	23.5528	89.1754	Triticum
+BTJP4_12	23.5528	89.1754	Triticum
+BTJP4_15	23.5528	89.1754	Triticum
+BTJP4_16	23.5528	89.1754	Triticum
+BTJP4_18	23.5528	89.1754	Triticum
+BTJP4_2	23.5528	89.1754	Triticum
+BTJP4_3	23.5528	89.1754	Triticum
+BTJP4_5	23.5528	89.1754	Triticum
+BTJP4_6	23.5528	89.1754	Triticum
+BTJP4_9	23.5528	89.1754	Triticum
+BTMP_S13_1	23.7721	88.6314	Triticum
+BTMP_S13_2	23.7721	88.6314	Triticum
+CD0142	7.54	-5.5471	Oryza
+E-TZA-21-	-6.369	34.8888	Oryza
+E-TZA-70	-6.369	34.8888	Oryza
+E-UGD-47	1.3733	32.2903	Oryza
+FR1069	43.6108	3.8767	Lolium
+GR1067	43.6108	3.8767	Lolium
+GY0040	3.9339	-53.1258	Oryza
+KA2-1-1	6.0938	-0.8342	Oryza
+Nich-2-3-2	5.5855	-56.8311	Oryza
+Nich-2-7-4	5.5855	-56.8311	Oryza
+PgKY4OV2.1	38.0406	-84.5037	Lolium
+PgPA18C-02	41.2033	-77.1945	Lolium
+PY5010	-23.3197	-51.1662	Lolium
+Sar-2-20-1	5.7241	-55.669	Oryza
+Sar-AD3-5	5.7241	-55.669	Oryza
+TN0001	-6.369	34.8888	Oryza
+TN0002	-6.369	34.8888	Oryza
+TN0090	-6.369	34.8888	Oryza
+US0041	32.3547	-89.3985	Oryza
+VO104	18.2208	-66.5901	Oryza
