@@ -1,0 +1,3 @@
+
+
+dnadiff -p AG006_edited_AG002 -d AG006_edited_AG002.delta 
