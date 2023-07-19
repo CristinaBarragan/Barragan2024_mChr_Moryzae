@@ -2,7 +2,7 @@
 vcftools --vcf /hpc-home/barragan/Italian_blast/pangenome.snps.filtered.bi.recode.vcf --keep 274_ind_rice.txt --recode --recode-INFO-all --out  pangenome.snps.filtered.bi.274rice
 #keep only SNPs with no missing data
 vcftools --vcf pangenome.snps.filtered.bi.274rice.recode.vcf --max-missing 1.0 --recode --recode-INFO-all --out pangenome.snps.filtered.bi.274rice.md0
-#edir vcf
+#edit vcf
 vcf=pangenome.snps.filtered.bi.274rice.md0.recode.vcf
 
 sed -i 's/Contig01/1/g' $vcf
@@ -30,29 +30,21 @@ sed -i 's/Contig22/22/g' $vcf
 sed -i 's/Contig23/23/g' $vcf
 sed -i 's/Contig24/24/g' $vcf
 
-# to prune, transform from vcf to plink
-vcftools --vcf pangenome.snps.filtered.bi.prune50.5.05.recode.vcf --plink --out pangenome.snps.filtered.bi.prune50.5.05
+# to prune, transform from vcf to plink and edit
+#vcftools --vcf pangenome.snps.filtered.bi.274rice.md0.recode.vcf --plink --out pangenome.snps.filtered.bi.274rice.md0
+#plink2 --vcf  pangenome.snps.filtered.bi.274rice.md0.recode.vcf  --out  pangenome.snps.filtered.bi.274rice.md0.2
+#plink2 --pfile pangenome.snps.filtered.bi.274rice.md0.2 --recode vcf --out pangenome.snps.filtered.bi.274rice.md0.2.plink
+#sed -i 's/^##fileformat=VCFv4.3/##fileformat=VCFv4.2/' pangenome.snps.filtered.bi.274rice.md0.2.plink.vcf
 
-#plink2 --vcf  pangenome.snps.filtered.bi.prune50.5.05.recode.vcf --out  pangenome.snps.filtered.bi.prune50.5.05.2
-#plink2 --vcf pangenome.snps.filtered.bi.4indv.md1.recode.vcf --out pangenome.snps.filtered.bi.4indv.md1.2
-
-#plink2 --pfile pangenome.snps.filtered.bi.prune50.5.05.2 --recode vcf --out pangenome.snps.filtered.bi.prune50.5.05.2.plink
-
-#plink2 --pfile pangenome.snps.filtered.bi.4indv.md1.2 --recode vcf --out pangenome.snps.filtered.bi.4indv.md1.2.plink
-
-#sed -i 's/^##fileformat=VCFv4.3/##fileformat=VCFv4.2/' pangenome.snps.filtered.bi.prune50.5.05.2.plink.vcf
-
-#sed -i 's/^##fileformat=VCFv4.3/##fileformat=VCFv4.2/' pangenome.snps.filtered.bi.4indv.md1.2.plink.vcf
-
-#Fig1B
-To prune:
+#Fig1B 274 rice blast isolates
+#To prune:
 vcftools --vcf pangenome.snps.filtered.bi.274rice.md0.recode.vcf --plink --out pangenome.snps.filtered.bi.274rice.md0
 plink --file pangenome.snps.filtered.bi.274rice.md0 --indep-pairwise 50 5 0.5 --out pangenome.snps.filtered.bi.274rice.md0.prune50.5.05
 sed -i 's/:/   /g' pangenome.snps.filtered.bi.274rice.md0.prune50.5.05.prune.in
 vcftools --vcf pangenome.snps.filtered.bi.274rice.md0.recode.vcf --positions pangenome.snps.filtered.bi.274rice.md0.prune50.5.05.prune.in --recode --recode-INFO-all --out pangenome.snps.filtered.bi.274rice.md0.prune50.5.05
 
 #pangenome.snps.filtered.bi.274rice.md0.prune50.5.05.recode.vcf 
-#-> kept 10,728 out of a possible 354307 Sites after pruning
+#kept 10,728 out of a possible 354,307 Sites after pruning
 
 #change from vcf to fasta
 bgzip -c  pangenome.snps.filtered.bi.274rice.md0.prune50.5.05.recode.vcf >  pangenome.snps.filtered.bi.274rice.md0.prune50.5.05.recode.vcf.gz
@@ -62,7 +54,7 @@ perl  vcf_tab_to_fasta_alignment.pl -i pangenome.snps.filtered.bi.274rice.md0.pr
 
 #Loaded fasta into Splitstrees.
 
-#Fig 1C, subset members for the green clonal lineage only (n=86)
+#Fig 1C, subset members for the green clonal lineage (n=86)
 
 vcftools --vcf /hpc-home/barragan/Italian_blast/pangenome.snps.filtered.bi.recode.vcf --keep 86_ind_green_rice.txt --max-missing 1.0 --recode --recode-INFO-all --out  pangenome.snps.filtered.bi.86green_rice.md0
 
@@ -104,7 +96,6 @@ perl vcf_tab_to_fasta_alignment.pl -i pangenome.snps.filtered.bi.86green_rice.md
 # Created NJ tree (bs=100) using MEGA.
 
 #iTol links:
-
 
 ##### vcf_tab_to_fasta_alignment.pl from https://github.com/JinfengChen/vcf-tab-to-fasta
 #!/usr/bin/perl
