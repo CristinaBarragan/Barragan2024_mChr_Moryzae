@@ -1,3 +1,5 @@
+#### using MUMmerv4 #######
+
 AG006=/tsl/data/extReads/winj/italian/assemblies/AG006_pilon_polished_round2.fasta
 REF=/tsl/scratch/barragan/Italian_blast/reference_genome/70-15_fasta/Magnaporthe_oryzae.MG8.fa
 
@@ -7,14 +9,14 @@ show-coords -THrd 70-15_AG006.delta_m_i80_l10k.delta > 70-15_AG006.delta_m_i80_l
 
 #parse 70-15_AG006.delta_m_i80_l10k.coords to create AG006_70-15_algn_coords_long.bed and 70-15_AG006_algn_coords_long.bed
 
-## plot in R
+##### plot in R ######## with contributions from T Langner ######
 
 library(tidyr)
 library(circlize)
 library(dplyr)
 library(tidyverse)
 
-#################################### based on TLs script 
+############################### 
 circos.par("start.degree" = 90)
 #initialize a circos plot wihtout tracks reading a bed formatted genome description (Format: Chr-name Start End)
 
@@ -30,10 +32,12 @@ circos.initializeWithIdeogram(df)
 
 #adding rainbow color to chromosomes
 circos.track(ylim = c(0, 1), bg.col = c(rainbow(50, alpha = 1)), bg.border = NA, track.height = 0.05)
+
 #read AG006 info
 AG006_coords_df <- read_tsv("AG006_70-15_algn_coords_long.bed", col_names = T)
 AG006_coords_df
 
+#read 70-15 info
 70_15_coords_df <- read_tsv("70-15_AG006_algn_coords_long.bed", col_names = T)
 70_15_coords_df
 
