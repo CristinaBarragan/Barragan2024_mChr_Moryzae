@@ -1,6 +1,7 @@
-########################
+################################################
 #Fig1A plot locations of nine clonal rice blast isolates
-##############################
+#written by Cristina Barragan 2023 #######################
+######################################################
 getwd()
 setwd("Documents/BLAST/")
 library(lubridate)
