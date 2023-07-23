@@ -1,3 +1,6 @@
+###########################################################
+
+
 #subset rice blast fungus individuals from Master VCF
 vcftools --vcf /hpc-home/barragan/Italian_blast/pangenome.snps.filtered.bi.recode.vcf --keep 274_ind_rice.txt --recode --recode-INFO-all --out  pangenome.snps.filtered.bi.274rice
 #keep only SNPs with no missing data
