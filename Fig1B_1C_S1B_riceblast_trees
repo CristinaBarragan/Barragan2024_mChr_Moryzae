@@ -2,7 +2,7 @@
 ######### Create genome-wide SNP based NeighborNets or NJ trees from a VCF
 ########## written by Cristina Barragan 2023 ###################################
 
-#### Fig2B
+#### Fig1B
 #subset rice blast fungus individuals from Master VCF
 vcftools --vcf /hpc-home/barragan/Italian_blast/pangenome.snps.filtered.bi.recode.vcf --keep 274_ind_rice.txt --recode --recode-INFO-all --out  pangenome.snps.filtered.bi.274rice
 #keep only SNPs with no missing data
@@ -35,7 +35,7 @@ sed -i 's/Contig22/22/g' $vcf
 sed -i 's/Contig23/23/g' $vcf
 sed -i 's/Contig24/24/g' $vcf
 
-# Create an artificial diplots genome: transform vcf to plink and edit vcf
+# Create an artificial diploid genome: transform vcf to plink and edit vcf
 #vcftools --vcf pangenome.snps.filtered.bi.274rice.md0.recode.vcf --plink --out pangenome.snps.filtered.bi.274rice.md0
 #plink2 --vcf  pangenome.snps.filtered.bi.274rice.md0.recode.vcf  --out  pangenome.snps.filtered.bi.274rice.md0.2
 #plink2 --pfile pangenome.snps.filtered.bi.274rice.md0.2 --recode vcf --out pangenome.snps.filtered.bi.274rice.md0.2.plink
@@ -59,6 +59,7 @@ perl  vcf_tab_to_fasta_alignment.pl -i pangenome.snps.filtered.bi.274rice.md0.pr
 
 #Loaded fasta into SplitsTree4 v 4.16.2 (Huson and Bryant, 2006)  -> Fig 1B
 
+#################################
 #Fig 1C, subset members for the green clonal lineage (n=86), similar process
 
 vcftools --vcf /hpc-home/barragan/Italian_blast/pangenome.snps.filtered.bi.recode.vcf --keep 86_ind_green_rice.txt --max-missing 1.0 --recode --recode-INFO-all --out  pangenome.snps.filtered.bi.86green_rice.md0
