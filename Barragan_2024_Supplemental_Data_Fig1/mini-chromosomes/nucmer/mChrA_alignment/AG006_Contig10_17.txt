@@ -1,0 +1,3 @@
+contig	start	end	strand
+AG006_Contig10	1049686	1101764	1
+AG006_Contig10	1101752	1148409	1
