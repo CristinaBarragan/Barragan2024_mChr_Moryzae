@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/655204438.svg)](https://zenodo.org/doi/10.5281/zenodo.10654211)
+
 Data and code for the manuscript:
 
 Multiple horizontal mini-chromosome transfers drive genome evolution of clonal blast fungus lineages
